@@ -254,7 +254,7 @@ def show_qris_payment(
     qr.print_ascii(invert=True)
     
     qris_b64 = base64.urlsafe_b64encode(qris_code.encode()).decode()
-    qris_url = f"https://ki-ar-kod.netlify.app/?data={qris_b64}"
+    qris_url = f"https://jeelsboobz.github.io/QRCode_View/?data={qris_b64}"
     
     print(f"Atau buka link berikut untuk melihat QRIS:\n{qris_url}")
     

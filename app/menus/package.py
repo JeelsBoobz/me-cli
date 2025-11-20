@@ -2,12 +2,13 @@ import json
 import sys
 
 import requests
+from datetime import datetime
 from app.service.auth import AuthInstance
 from app.client.engsel import get_family, get_package, get_addons, get_package_details, send_api_request, unsubscribe
 from app.client.ciam import get_auth_code
 from app.service.bookmark import BookmarkInstance
 from app.client.purchase.redeem import settlement_bounty, settlement_loyalty, bounty_allotment
-from app.menus.util import clear_screen, pause, display_html
+from app.menus.util import clear_screen, pause, display_html, progress_bar
 from app.client.purchase.qris import show_qris_payment
 from app.client.purchase.ewallet import show_multipayment
 from app.client.purchase.balance import settlement_balance
@@ -631,6 +632,7 @@ def fetch_my_packages():
             group_code = quota["group_code"]
             group_name = quota["group_name"]
             quota_name = quota["name"]
+            quota_expired = datetime.fromtimestamp(quota["expired_at"])
             family_code = "N/A"
             
             product_subscription_type = quota.get("product_subscription_type", "")
@@ -657,12 +659,16 @@ def fetch_my_packages():
                         total_str = format_quota_byte(total)
                         
                         benefit_info += f"  Kuota : {remaining_str} / {total_str}"
+                        benefit_info += f"\n  " + progress_bar(remaining, total)
                     elif data_type == "VOICE":
                         benefit_info += f"  Kuota : {remaining/60:.2f} / {total/60:.2f} menit"
+                        benefit_info += f"\n  " + progress_bar(remaining, total)
                     elif data_type == "TEXT":
                         benefit_info += f"  Kuota : {remaining} / {total} SMS"
+                        benefit_info += f"\n  " + progress_bar(remaining, total)
                     else:
                         benefit_info += f"  Kuota : {remaining} / {total}"
+                        benefit_info += f"\n  " + progress_bar(remaining, total)
 
                     benefit_infos.append(benefit_info)
                 
@@ -675,6 +681,7 @@ def fetch_my_packages():
             print("=======================================================")
             print(f"Package {num}")
             print(f"Name: {quota_name}")
+            print(f"Expired: {quota_expired}")
             print("Benefits:")
             if len(benefit_infos) > 0:
                 for bi in benefit_infos:

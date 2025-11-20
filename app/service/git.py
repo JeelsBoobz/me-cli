@@ -2,9 +2,9 @@ import subprocess
 import requests
 import xml.etree.ElementTree as ET
 
-OWNER = "purplemashu"
-REPO  = "me-cli-sunset"
-BRANCH = "main"
+OWNER = "JeelsBoobz"
+REPO  = "me-cli"
+BRANCH = "mod"
 
 def get_local_commit():
     """Return current local commit hash, or None if not in a git repo."""

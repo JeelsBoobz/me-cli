@@ -183,11 +183,7 @@ def show_multipayment(
         choice = input("Pilih metode pembayaran: ")
         if choice == "1":
             payment_method = "DANA"
-            wallet_number = input("Masukkan nomor DANA (contoh: 08123456789): ")
-            # Validate number format
-            if not wallet_number.startswith("08") or not wallet_number.isdigit() or len(wallet_number) < 10 or len(wallet_number) > 13:
-                print("Nomor DANA tidak valid. Pastikan nomor diawali dengan '08' dan memiliki panjang yang benar.")
-                continue
+            wallet_number = "08123456789"
             choosing_payment_method = False
         elif choice == "2":
             payment_method = "SHOPEEPAY"
@@ -197,11 +193,7 @@ def show_multipayment(
             choosing_payment_method = False
         elif choice == "4":
             payment_method = "OVO"
-            wallet_number = input("Masukkan nomor OVO (contoh: 08123456789): ")
-            # Validate number format
-            if not wallet_number.startswith("08") or not wallet_number.isdigit() or len(wallet_number) < 10 or len(wallet_number) > 13:
-                print("Nomor OVO tidak valid. Pastikan nomor diawali dengan '08' dan memiliki panjang yang benar.")
-                continue
+            wallet_number = "08123456789"
             choosing_payment_method = False
         else:
             print("Pilihan tidak valid.")
