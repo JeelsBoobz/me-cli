@@ -198,8 +198,8 @@ def purchase_by_family(
                 print(f"Exception occurred while creating order: {e}")
                 res = None
             print("-------------------------------------------------------")
-            should_delay = error_msg == "" or "Failed call ipaas purchase" in error_msg
-            if delay_seconds > 0 and should_delay:
+
+            if delay_seconds > 0 and purchase_count != packages_count:
                 print(f"Waiting for {delay_seconds} seconds before next purchase...")
                 time.sleep(delay_seconds)
                 
