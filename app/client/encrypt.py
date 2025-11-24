@@ -68,7 +68,7 @@ def load_ax_fp() -> str:
         manufacturer="motorola",
         model="moto g45 5G",
         lang="en",
-        resolution="720x1540",
+        resolution="720x1600",
         tz_short="GMT07:00",
         ip="192.168.1." + str(randint(1, 255)),
         font_scale=1.0,
