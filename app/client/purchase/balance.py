@@ -182,7 +182,7 @@ def settlement_balance(
     
     url = f"{BASE_API_URL}/{path}"
     print("Sending settlement request...")
-    resp = requests.post(url, headers=headers, data=json.dumps(body), timeout=30)
+    resp = requests.post(url, headers=headers, data=json.dumps(body), timeout=30, verify=False)
     
     try:
         decrypted_body = decrypt_xdata(api_key, json.loads(resp.text))

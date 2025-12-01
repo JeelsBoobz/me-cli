@@ -55,7 +55,7 @@ def send_api_request(
     }
 
     url = f"{BASE_API_URL}/{path}"
-    resp = requests.post(url, headers=headers, data=json.dumps(body), timeout=30)
+    resp = requests.post(url, headers=headers, data=json.dumps(body), timeout=30, verify=False)
     
     # print(f"Headers: {json.dumps(headers, indent=2)}")
     # print(f"Response body: {resp.text}")
