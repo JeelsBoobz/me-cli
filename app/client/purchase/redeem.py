@@ -4,6 +4,8 @@ import uuid
 import requests
 
 from datetime import datetime, timezone
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 from app.client.engsel import BASE_API_URL, UA
 from app.client.encrypt import (
