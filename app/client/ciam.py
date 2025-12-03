@@ -66,7 +66,7 @@ def get_otp(contact: str) -> str:
 
     print("Requesting OTP...")
     try:
-        response = requests.request("GET", url, data=payload, headers=headers, params=querystring, timeout=30)
+        response = requests.request("GET", url, data=payload, headers=headers, params=querystring, timeout=60)
         print("response body", response.text)
         json_body = json.loads(response.text)
     
@@ -109,7 +109,7 @@ def extend_session(subscriber_id: str) -> str:
     
     print("Extending session...")
     try:
-        response = requests.get(url, headers=headers, params=querystring, timeout=30)
+        response = requests.get(url, headers=headers, params=querystring, timeout=60)
         if response.status_code != 200:
             print(f"Failed to extend session: {response.status_code} - {response.text}")
             return None
@@ -174,7 +174,7 @@ def submit_otp(
 
     print("Submitting OTP...")
     try:
-        response = requests.post(url, data=payload, headers=headers, timeout=30, verify=False)
+        response = requests.post(url, data=payload, headers=headers, timeout=60, verify=False)
         json_body = json.loads(response.text)
                 
         if "error" in json_body:
@@ -214,7 +214,7 @@ def get_new_token(api_key: str, refresh_token: str, subscriber_id: str) -> str:
     }
 
     print("Refreshing token...")
-    resp = requests.post(url, headers=headers, data=data, timeout=30, verify=False)
+    resp = requests.post(url, headers=headers, data=data, timeout=60, verify=False)
     if resp.status_code == 400:
         if resp.json().get("error_description") != "Session not active":
             print(f"Failed to refresh token: {resp.status_code} - {resp.text}")
@@ -286,7 +286,7 @@ def get_auth_code(tokens: dict, pin: str, msisdn: str):
     }
 
     try:
-        resp = requests.post(url, headers=headers, json=body, timeout=30, verify=False)
+        resp = requests.post(url, headers=headers, json=body, timeout=60, verify=False)
     except requests.RequestException as e:
         print(f"[get_auth_code] Request error: {e}")
         return None

@@ -144,7 +144,7 @@ def settlement_bounty(
     
     url = f"{BASE_API_URL}/{path}"
     print("Sending bounty request...")
-    resp = requests.post(url, headers=headers, data=json.dumps(body), timeout=30, verify=False)
+    resp = requests.post(url, headers=headers, data=json.dumps(body), timeout=60, verify=False)
     
     try:
         decrypted_body = decrypt_xdata(api_key, json.loads(resp.text))
@@ -221,7 +221,7 @@ def settlement_loyalty(
 
     url = f"{BASE_API_URL}/{path}"
     print("Sending loyalty request...")
-    resp = requests.post(url, headers=headers, data=json.dumps(body), timeout=30, verify=False)
+    resp = requests.post(url, headers=headers, data=json.dumps(body), timeout=60, verify=False)
     
     try:
         decrypted_body = decrypt_xdata(api_key, json.loads(resp.text))
@@ -298,7 +298,7 @@ def bounty_allotment(
     
     url = f"{BASE_API_URL}/{path}"
     print("Sending bounty request...")
-    resp = requests.post(url, headers=headers, data=json.dumps(body), timeout=30, verify=False)
+    resp = requests.post(url, headers=headers, data=json.dumps(body), timeout=60, verify=False)
     
     try:
         decrypted_body = decrypt_xdata(api_key, json.loads(resp.text))

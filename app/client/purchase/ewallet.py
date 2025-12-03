@@ -157,7 +157,7 @@ def settlement_multipayment(
     
     url = f"{BASE_API_URL}/{path}"
     print("Sending settlement request...")
-    resp = requests.post(url, headers=headers, data=json.dumps(body), timeout=30, verify=False)
+    resp = requests.post(url, headers=headers, data=json.dumps(body), timeout=60, verify=False)
     
     try:
         decrypted_body = decrypt_xdata(api_key, json.loads(resp.text))
